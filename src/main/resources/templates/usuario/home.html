@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Proyecto Farmacia</title>
+
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<!-- Custom styles for this template -->
+	<link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+</head>
+<style>
+	.carousel-caption {
+		background: rgb(0, 0, 0, 0.4);
+		/* Fondo negro con 50% de transparencia */
+		position: absolute;
+		top: 50%;
+		left: 10%;
+		/* Ajusta este valor para controlar la distancia desde la izquierda */
+		transform: translate(0, -50%);
+		width: 500px;
+		/* Ajusta este valor para controlar el ancho del caption */
+		text-align: left;
+		padding: 15px;
+		border-radius: 15px;
+	}
+
+	.carousel-caption h1,
+	.carousel-caption p {
+		margin: 0;
+		color: rgb(255, 255, 255);
+
+	}
+	.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+	}
+	
+	.rating span {
+	    font-size: 25px;
+	    padding-right: 5px;
+	}
+	
+	/* Estilos para estrellas seleccionadas (por ejemplo, estrellas llenas) */
+	.checked {
+	    color: orange;
+	}
+	
+</style>
+
+
+<body style="background-color: #FFFFFF;">
+
+
+	<!-- Navigation -->
+	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}">
+
+	</div>
+	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}">
+
+	</div>
+<br>
+	<!-- Page Content -->
+	<div class="container">
+		<!-- Carrusel -->
+		<div id="carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel" data-slide-to="1"></li>
+				<li data-target="#carousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" >
+				<div class="carousel-caption d-md-block text-left text-white">
+					<h1 class="display-6">Bienvenido a "Cuidado y Salud" 2023</h1>
+					<p class="lead">Tu tienda de productos en Línea</p>
+				</div>
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="/images/pastilla.jpg" height="500px" alt="Primer slide">
+				</div>
+
+				<div class="carousel-item">
+					<img class="d-block w-100" src="/images/pastilla2.jpg" height="500px" alt="Segundo slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="/images/pastilla3.jpg" height="500px" alt="Tercer slide">
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Anterior</span>
+			</a>
+			<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Siguiente</span>
+			</a>
+		</div>
+		<br>
+		<!-- Page Features -->
+		<hr>
+		<h4 style="text-align: center; font-weight: bold; color: rgb(0, 0, 0,0.9); text-shadow: 4px -7px 2px rgba(0,0,0,0.6);
+		  font-size: 50px;">Farmacos Disponibles</h4>
+		  <br>
+
+         <div th:include="usuario/template_usuario.html::producto-login" th:if="${sesion==null}"
+         ></div>
+         
+         <div th:include="usuario/template_usuario.html::producto-user" th:unless="${sesion==null}"
+         ></div>
+
+
+<hr>
+		</div>
+		<!-- /.row -->
+ 
+	</div>
+	
+	<!-- /.container -->
+
+	<!-- Footer -->
+
+	<div th:include="usuario/template_usuario.html::footer">
+
+	</div>
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

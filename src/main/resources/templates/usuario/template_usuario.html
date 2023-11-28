@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Proyecto Farmacia</title>
+
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<!-- Custom styles for this template -->
+	<link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+</head>
+
+<body style="background-color: #FFFFFF;">
+
+
+	<!-- Navigation -->
+	<div th:fragment="header">
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+			<div class="container">
+				<a class="navbar-brand" th:href="@{/}">Cuidado y Salud</a>
+
+				<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/BuscarProducto}">
+					<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+						name="nombre" autocomplete="off">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+					aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" th:href="@{/usuario/login}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+	</div>
+
+	<!-- Navigation -->
+	<div th:fragment="header-user">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+			<div class="container">
+				<a class="navbar-brand" th:href="@{/}">Cuidado y Salud</a>
+
+				<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/BuscarProducto}">
+					<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+						name="nombre" autocomplete="off">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+					aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+								id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"><i class="fas fa-user"></i> USER</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/usuario/compras}"> <i class="fas fa-shopping-basket"></i> Compras</a>
+								<a class="dropdown-item" th:href="@{/getCarrito}"><i class="fas fa-shopping-cart"></i> Carrito</a>
+								<a class="dropdown-item" th:href="@{/usuario/cerrarSesion}"> <i class="fas fa-sign-out-alt"></i> Salir</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</div>
+	
+	<div th:fragment="producto-login">
+		<div class="row text-center">
+                       
+			<div class="col-lg-3 col-md-6 mb-4" th:each="p:${productos}">
+				<div class="card h-100">
+					<img class="card-img-top" th:src="@{/images/{img} (img=${p.imagen})}" width="200px" height="200px"
+						alt="">
+					<div class="card-body">
+						<p class="card-text" th:text="${p.nombre}"></p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+		<div th:fragment="producto-user">
+		    <div class="row text-center">
+		        <div class="col-lg-3 col-md-6 mb-4" th:each="p:${productos}">
+		            <div class="card h-100">
+		                <img class="card-img-top" th:src="@{/images/{img} (img=${p.imagen})}" width="200px" height="200px"
+		                    alt="">
+		                <div class="card-body">
+		                    <h5 class="card-title" th:text="${p.nombre}"></h5>
+		                    <p class="card-text" th:text="${p.descripcion}"></p> <!-- Añade la descripción del producto -->
+		                    <p class="card-text"><strong>Precio:</strong> <span th:text="${p.precio}"></span></p> <!-- Muestra el precio del producto -->
+		                    <div class="rating">
+		                        <!-- Estrellas fijas -->
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star"></span>
+		                    </div>
+		                </div>
+		                <div class="card-footer">
+		                    <a th:href="@{/productohome/{id} (id=${p.id})}" class="btn btn-success">Ver Farmaco</a>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+			<!-- Footer -->
+			<div th:fragment="footer">
+				<footer class="py-5 bg-secondary">
+					<div class="container">
+						<p class="m-0 text-center text-white">Copyright &copy; Proyecto Farmacia LPII 2023</p>
+					</div>
+					<!-- /.container -->
+				</footer>
+
+			</div>
+
+
+
+			<!-- Bootstrap core JavaScript -->
+			<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+			<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
